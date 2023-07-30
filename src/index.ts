@@ -11,10 +11,7 @@ app.get('/', (request, response) => {
   response.status(200).send(products);
 });
 
-
-
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
