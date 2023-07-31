@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 
 app.get('/', (request, response) => {
-  const products = ['a', 'b', 'c'];
+  const products = ['a', 'b', 'c', 'd'];
 
   response.status(200).send(products);
 });
