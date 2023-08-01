@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "swc-node ./src/index.ts",
-    "build": "swc ./src -d ./dist",
+    "server": "swc-node ./src/index.ts",
+    "build": "swc ./src -d ./build",
+    "pre-build": "npm install ; npm run build",
     "format": "npx prettier --write . --ignore-path .gitignore",
     "lint": "eslint . --ignore-path .gitignore --fix",
     "fix-style": "npm run format && npm run lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "node build/index.js"
   },
   "keywords": [],
   "author": "",
