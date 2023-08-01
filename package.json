@@ -2,6 +2,7 @@
   "name": "express-product-catalog-be",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "server": "swc-node ./src/index.ts",
@@ -14,7 +15,7 @@
     "start": "node build/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "devBananas",
   "license": "ISC",
   "devDependencies": {
     "@swc/cli": "^0.1.62",
