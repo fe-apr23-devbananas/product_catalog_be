@@ -18,12 +18,6 @@ export const createServer = async () => {
     }),
   );
 
-  // const sequelize = initDB();
-
-  // const res = await sequelize.authenticate();
-
-  // console.log(res);
-
   app.use('/', express.json(), phonesRouter);
 
   app.listen(PORT, () => {
