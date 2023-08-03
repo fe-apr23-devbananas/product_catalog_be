@@ -7,7 +7,7 @@ export const initDB = () => {
   const DB_URI = `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`;
 
   return new Sequelize(DB_URI, {
-    dialect: 'postgres',
+    logging: false,
     models,
     dialectOptions: {
       ssl: true,
