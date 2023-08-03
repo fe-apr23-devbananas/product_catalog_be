@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { phonesRouter } from './phones/phones.route';
-// import { initDB } from './initDB';
+import { initDB } from './initDB';
 import dotenv from 'dotenv';
 
 export const createServer = async () => {
@@ -11,6 +11,8 @@ export const createServer = async () => {
   const PORT = process.env.PORT;
 
   const app = express();
+
+  initDB();
 
   app.use(
     cors({
