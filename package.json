@@ -6,7 +6,7 @@
   "scripts": {
     "server": "npm run run-seeds-migrate ; ts-node --swc ./src/index.ts",
     "build": "npx tsc",
-    "pre-build": "npm install ; npm run run-seeds-migrate ; npm run build",
+    "pre-build": "npm install ; NODE_ENV=production npm run run-seeds-migrate ; npm run build",
     "format": "npx prettier --write src/. --ignore-path .gitignore",
     "lint": "eslint src/. --ignore-path .gitignore --fix",
     "fix-style": "npm run format && npm run lint",

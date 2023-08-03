@@ -2,7 +2,6 @@ import {
   Column,
   Model,
   DataType,
-  Unique,
   AllowNull,
   Table,
 } from 'sequelize-typescript';
@@ -12,7 +11,6 @@ import {
 })
 export class Products extends Model {
   @AllowNull(false)
-  @Unique
   @Column({
     type: DataType.STRING,
   })
@@ -25,14 +23,12 @@ export class Products extends Model {
     category: string;
 
   @AllowNull(false)
-  @Unique
   @Column({
     type: DataType.STRING,
   })
     phoneId: string;
 
   @AllowNull(false)
-  @Unique
   @Column({
     type: DataType.STRING,
   })
