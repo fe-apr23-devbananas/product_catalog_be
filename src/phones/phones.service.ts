@@ -5,7 +5,7 @@ export class PhonesService {
     return Products.findByPk(id);
   }
 
-  findAll() {
-    return Products.findAll();
+  findAll(category = 'phones') {
+    return Products.findByPk(category);
   }
 }
