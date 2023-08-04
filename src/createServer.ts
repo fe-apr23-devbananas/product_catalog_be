@@ -17,7 +17,7 @@ export const createServer = async () => {
 
   app.use(
     cors({
-      origin: CLIENT_URL,
+      origin: [CLIENT_URL as string, 'http://localhost:3000'],
     }),
   );
 
