@@ -6,6 +6,10 @@ export class PhonesService {
   }
 
   findAll(category = 'phones') {
-    return Products.findByPk(category);
+    return Products.findAll({
+      where: {
+        category: category,
+      },
+    });
   }
 }
