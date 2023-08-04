@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import { phonesRouter } from './phones/phones.route';
 import { initDB } from './initDB';
 import dotenv from 'dotenv';
@@ -20,7 +21,7 @@ export const createServer = async () => {
     }),
   );
 
-  app.use('/img', express.static('public'));
+  app.use('/img', express.static(path.join('img')));
   app.use('/phones', express.json(), phonesRouter);
 
   app.listen(PORT, () => {
