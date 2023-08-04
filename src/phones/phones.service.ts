@@ -8,7 +8,11 @@ interface FindALlOptions {
 
 export class PhonesService {
   findById(id: string) {
-    return Products.findByPk(id);
+    return Products.findAll({
+      where: {
+        itemId: id,
+      },
+    });
   }
 
   findAll(options: FindALlOptions, category = 'phones') {
