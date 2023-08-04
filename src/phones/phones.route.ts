@@ -3,6 +3,6 @@ import { getAllPhonesController } from './phones.controller';
 
 const phonesRouter = express.Router();
 
-phonesRouter.get('/phones', getAllPhonesController);
+phonesRouter.get('/', getAllPhonesController);
 
 export { phonesRouter };

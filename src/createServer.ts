@@ -20,7 +20,8 @@ export const createServer = async () => {
     }),
   );
 
-  app.use('/', express.json(), phonesRouter);
+  app.use('/img', express.static('public'));
+  app.use('/phones', express.json(), phonesRouter);
 
   app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);

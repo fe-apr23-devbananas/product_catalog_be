@@ -21,10 +21,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      phoneId: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       itemId: {
         type: Sequelize.STRING,
         allowNull: false,
