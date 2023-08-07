@@ -1,17 +1,17 @@
 import {
   Column,
   Model,
-  DataType,
   AllowNull,
+  DataType,
   Table,
   PrimaryKey,
 } from 'sequelize-typescript';
-import { DescriptionFields } from '../types';
+import { Description } from '../types';
 
 @Table({
   tableName: 'accessories',
 })
-export class Products extends Model {
+export class Phones extends Model {
   @AllowNull(false)
   @PrimaryKey
   @Column({
@@ -22,6 +22,7 @@ export class Products extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.STRING,
+    field: 'namespace_id',
   })
     namespaceId: string;
 
@@ -31,9 +32,9 @@ export class Products extends Model {
   })
     name: string;
 
-  @AllowNull(false)
   @Column({
-    type: DataType.ARRAY,
+    type: DataType.ARRAY(DataType.STRING),
+    field: 'capacity_available',
   })
     capacityAvailable: string[];
 
@@ -46,18 +47,20 @@ export class Products extends Model {
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
+    field: 'price_regular',
   })
     priceRegular: number;
 
   @AllowNull(false)
   @Column({
     type: DataType.INTEGER,
+    field: 'price_discount',
   })
     priceDiscount: number;
 
-  @AllowNull(false)
   @Column({
-    type: DataType.ARRAY,
+    type: DataType.ARRAY(DataType.STRING),
+    field: 'colors_available',
   })
     colorsAvailable: string[];
 
@@ -69,15 +72,14 @@ export class Products extends Model {
 
   @AllowNull(false)
   @Column({
-    type: DataType.ARRAY,
+    type: DataType.ARRAY(DataType.STRING),
   })
     images: string[];
 
-  @AllowNull(false)
   @Column({
-    type: DataType.ARRAY,
+    type: DataType.JSONB,
   })
-    description: DescriptionFields[];
+    description: Description[];
 
   @AllowNull(false)
   @Column({
@@ -105,7 +107,7 @@ export class Products extends Model {
 
   @AllowNull(false)
   @Column({
-    type: DataType.ARRAY,
+    type: DataType.ARRAY(DataType.STRING),
   })
     cell: string[];
 }
