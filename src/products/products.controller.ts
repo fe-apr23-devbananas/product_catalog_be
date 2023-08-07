@@ -8,13 +8,12 @@ const categories = ['phones', 'tablets', 'accessories'];
 export const getAllProductsController: Controller = async (req, res) => {
   const productsService = new ProductsService();
 
-  const { category, limit = 8, offset = 0, sortBy = 'itemId' } = req.query;
-
-  if (category === 'all' || !category) {
-    const products = await productsService.findAll(category);
-
-    res.status(200).send(products);
-  }
+  const {
+    category = 'phones',
+    limit = 8,
+    offset = 0,
+    sortBy = 'itemId',
+  } = req.query;
 
   const isSortByValid =
     typeof sortBy === 'string' && !sortByValues.includes(sortBy as string);
@@ -33,6 +32,10 @@ export const getAllProductsController: Controller = async (req, res) => {
     },
     category as string,
   );
+
+  if (!products) {
+    res.sendStatus(400);
+  }
 
   res.status(200).send(products);
 };
