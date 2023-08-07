@@ -54,11 +54,11 @@ export const getProductByIdController: Controller = async (req, res) => {
 
   switch (category) {
     case 'phones':
-      product = phoneService.findById(productId);
+      product = await phoneService.findById(productId);
       break;
     case 'all':
     default:
-      product = productsService.findById(productId);
+      product = await productsService.findById(productId);
       break;
   }
 
@@ -72,7 +72,7 @@ export const getProductByIdController: Controller = async (req, res) => {
 export const getNewestController: Controller = async (_req, res) => {
   const productsService = new ProductsService();
 
-  const newest = productsService.findNewest();
+  const newest = await productsService.findNewest();
 
   if (!newest) {
     res.sendStatus(500);
