@@ -13,7 +13,7 @@ export const getAllProductsController: Controller = async (req, res) => {
   if (category === 'all' || !category) {
     const products = await productsService.findAll(category);
 
-    res.send(products);
+    res.status(200).send(products);
   }
 
   const isSortByValid =
@@ -34,7 +34,7 @@ export const getAllProductsController: Controller = async (req, res) => {
     category as string,
   );
 
-  res.send(products);
+  res.status(200).send(products);
 };
 
 export const getProductByIdController: Controller = async (req, res) => {
@@ -47,7 +47,7 @@ export const getProductByIdController: Controller = async (req, res) => {
   const isCategoryValid = categories.includes(category as string);
 
   if (!isCategoryValid) {
-    res.send([]);
+    res.status(200).send([]);
   }
 
   let product;
