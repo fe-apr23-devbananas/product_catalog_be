@@ -1,8 +1,13 @@
 import express from 'express';
-import { getProductsByIdsController } from './products.controller';
+import {
+  getAllProductsController,
+  getProductByIdController,
+} from './products.controller';
 
 const productsRouter = express.Router();
 
-productsRouter.get('/', getProductsByIdsController);
+productsRouter.get('/', getAllProductsController);
+productsRouter.get('/:productId', getProductByIdController);
+productsRouter.get('/:new', getProductByIdController);
 
 export { productsRouter };

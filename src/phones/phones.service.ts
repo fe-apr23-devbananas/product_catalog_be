@@ -1,27 +1,28 @@
 import { Products } from '../models/Products.model';
 
-interface FindALlOptions {
-  limit?: number;
-  offset?: number;
-  sortBy?: 'itemId' | 'price' | 'name' | 'year';
-}
+// interface FindAllOptions {
+//   limit?: number;
+//   offset?: number;
+//   sortBy?: 'itemId' | 'price' | 'name' | 'year';
+// }
 
 export class PhonesService {
   findById(id: string) {
-    return Products.findAll({
+    return Products.findOne({
       where: {
         itemId: id,
       },
     });
   }
 
-  findAll(options: FindALlOptions, category = 'phones') {
-    const { limit, offset, sortBy = 'itemId' } = options;
+  // findAll(options?: FindAllOptions, category = 'phones') {
+  findAll(category = 'phones') {
+    // const { limit, offset, sortBy = 'itemId' } = options;
 
     return Products.findAll({
-      limit,
-      offset,
-      order: [[sortBy, 'ASC']],
+      // limit,
+      // offset,
+      // order: [[sortBy, 'ASC']],
       where: {
         category: category,
       },
