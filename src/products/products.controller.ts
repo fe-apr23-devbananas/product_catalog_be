@@ -10,7 +10,7 @@ export const getAllProductsController: Controller = async (req, res) => {
 
   const { category, limit = 8, offset = 0, sortBy = 'itemId' } = req.query;
 
-  if (category === 'all') {
+  if (category === 'all' || !category) {
     const products = await productsService.findAll(category);
 
     res.send(products);
