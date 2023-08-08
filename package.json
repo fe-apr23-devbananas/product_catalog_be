@@ -6,7 +6,7 @@
   "scripts": {
     "server": "npm run run-seeds-migrate ; ts-node --swc ./src/index.ts",
     "build": "npx tsc",
-    "pre-build": "npm install ; NODE_ENV=production npm run run-seeds-migrate ; npm run build",
+    "pre-build": "npm install ; cross-env NODE_ENV=production npm run run-seeds-migrate ; npm run build",
     "format": "npx prettier --write src/. --ignore-path .gitignore",
     "lint": "eslint src/. --ignore-path .gitignore --fix",
     "fix-style": "npm run format && npm run lint",
@@ -28,6 +28,7 @@
     "@types/node": "^20.4.4",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.46.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",

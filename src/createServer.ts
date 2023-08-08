@@ -1,16 +1,13 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import { phonesRouter } from './phones/phones.route';
+import { phonesRouter } from './routers/phones.route';
 import { initDB } from './initDB';
-import dotenv from 'dotenv';
-import { productsRouter } from './products/products.route';
+import { productsRouter } from './routers/products.route';
+import { tabletsRouter } from './routers/tablets.route';
 
-export const createServer = async () => {
-  dotenv.config();
-
-  const CLIENT_URL = process.env.CLIENT_URL;
-  const PORT = process.env.DB_PORT;
+export const createServer = () => {
+  // const CLIENT_URL = process.env.CLIENT_URL;
 
   const app = express();
 
@@ -18,15 +15,15 @@ export const createServer = async () => {
 
   app.use(
     cors({
-      origin: [CLIENT_URL as string, 'http://localhost:3000'],
+      // origin: [CLIENT_URL as string, 'http://localhost:3000'],
+      origin: '*',
     }),
   );
 
   app.use('/img', express.static(path.join('img')));
   app.use('/phones', express.json(), phonesRouter);
   app.use('/products', express.json(), productsRouter);
-
-  app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-  });
+  app.use('/tablets', express.json(), tabletsRouter);
+  // app.use('/accessories', express.json(), productsRouter);
+  return app;
 };

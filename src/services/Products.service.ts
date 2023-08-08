@@ -1,3 +1,4 @@
+import { literal } from 'sequelize';
 import { Products } from '../models/Products.model';
 
 interface FindAllOptions {
@@ -6,7 +7,7 @@ interface FindAllOptions {
   sortBy?: 'itemId' | 'price' | 'name' | 'year';
 }
 
-export class ProductsService {
+class ProductsService {
   findById(itemId: string) {
     return Products.findByPk(itemId);
   }
@@ -33,6 +34,26 @@ export class ProductsService {
   }
 
   findNewest() {
-    return Products.findAll();
+    return Products.findAll({
+      limit: 10,
+      order: [['year', 'DESC']],
+    });
+  }
+
+  findRecomended(id: string[]) {
+    return Products.findAll({
+      where: {
+        itemId: id,
+      },
+    });
+  }
+
+  findDiscounts() {
+    return Products.findAll({
+      limit: 10,
+      order: [[literal('ABS("fullPrice" - "price")'), 'DESC']],
+    });
   }
 }
+
+export const productsService = new ProductsService();

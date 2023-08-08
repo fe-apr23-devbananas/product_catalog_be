@@ -1,4 +1,4 @@
-import { Tablets } from '../models/Tablets.model';
+import { Phones } from '../models/Phones.model';
 import { Products } from '../models/Products.model';
 
 interface FindAllOptions {
@@ -7,7 +7,7 @@ interface FindAllOptions {
   sortBy: 'itemId' | 'price' | 'name' | 'year';
 }
 
-class TabletsService {
+class PhonesService {
   findAll(options: FindAllOptions) {
     const { limit, offset, sortBy } = options;
 
@@ -16,13 +16,13 @@ class TabletsService {
       offset,
       order: [[sortBy, 'ASC']],
       where: {
-        category: 'tablets',
+        category: 'phones',
       },
     });
   }
 
   findById(itemId: string) {
-    return Tablets.findOne({
+    return Phones.findOne({
       where: {
         id: itemId,
       },
@@ -33,7 +33,7 @@ class TabletsService {
       return [];
     }
 
-    return Tablets.findAll({
+    return Phones.findAll({
       where: {
         namespaceId: namespaceId,
       },
@@ -41,4 +41,4 @@ class TabletsService {
   }
 }
 
-export const tabletsService = new TabletsService();
+export const phonesService = new PhonesService();
