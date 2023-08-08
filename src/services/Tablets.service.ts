@@ -1,15 +1,15 @@
-import { Phones } from '../models/Phones.model';
+import { Tablets } from '../models/Tablets.model';
 
-export class NewPhoneService {
+export class TabletsService {
   findById(itemId: string) {
-    return Phones.findByPk(itemId);
+    return Tablets.findByPk(itemId);
   }
   findRecommended(namespaceId: string | undefined) {
     if (!namespaceId) {
       return [];
     }
 
-    return Phones.findAll({
+    return Tablets.findAll({
       where: {
         namespaceId: namespaceId,
       },
