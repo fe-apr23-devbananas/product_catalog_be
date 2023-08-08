@@ -33,9 +33,6 @@ export class ProductsService {
   }
 
   findNewest() {
-    return Products.findAll({
-      limit: 10,
-      // order: [['year', 'DESC']],
-    });
+    return Products.findAll();
   }
 }
