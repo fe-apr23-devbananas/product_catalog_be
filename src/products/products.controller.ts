@@ -81,5 +81,5 @@ export const getNewestController: Controller = async (_req, res) => {
     res.sendStatus(500);
   }
 
-  res.send(newest);
+  res.status(200).send(newest);
 };
