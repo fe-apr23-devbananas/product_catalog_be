@@ -1,4 +1,6 @@
+import { Phones } from '../models/Phones.model';
 import { NewPhoneService } from '../services/NewPhone.service';
+import { TabletsService } from '../services/Tablets.service';
 import { Controller } from '../types';
 import { ProductsService } from './products.service';
 
@@ -42,7 +44,8 @@ export const getAllProductsController: Controller = async (req, res) => {
 
 export const getProductByIdController: Controller = async (req, res) => {
   const productsService = new ProductsService();
-  const phoneService = new NewPhoneService();
+  const phonesService = new NewPhoneService();
+  const tabletsService = new TabletsService();
 
   const { category } = req.query;
   const { productId } = req.params;
@@ -57,7 +60,10 @@ export const getProductByIdController: Controller = async (req, res) => {
 
   switch (category) {
     case 'phones':
-      product = await phoneService.findById(productId);
+      product = await phonesService.findById(productId);
+      break;
+    case 'tablets':
+      product = await tabletsService.findById(productId);
       break;
     case 'all':
     default:
@@ -81,5 +87,45 @@ export const getNewestController: Controller = async (_req, res) => {
     res.sendStatus(500);
   }
 
-  res.status(200).send(newest);
+  res.status(200).send([1, 2, 3]);
+};
+
+export const getRecommendedController: Controller = async (req, res) => {
+  const productsService = new ProductsService();
+  const phonesService = new NewPhoneService();
+  const tabletsService = new TabletsService();
+
+  const { category } = req.query;
+  const { productId } = req.params;
+
+  let product;
+  let recommendedProducts: Phones[];
+
+  switch (category) {
+    case 'phones':
+      product = await phonesService.findById(productId);
+      recommendedProducts = await phonesService.findRecommended(
+        product?.namespaceId,
+      );
+      break;
+    case 'tablets':
+      product = await tabletsService.findById(productId);
+      recommendedProducts = await tabletsService.findRecommended(
+        product?.namespaceId,
+      );
+      break;
+    default:
+      recommendedProducts = [];
+      break;
+  }
+
+  const products = await productsService.findAll();
+
+  const recommendedIds = recommendedProducts.map((item) => item.id);
+
+  const recommended = products.filter((product) =>
+    recommendedIds.includes(product.itemId),
+  );
+
+  res.status(200).send(recommended);
 };
