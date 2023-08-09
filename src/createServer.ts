@@ -24,6 +24,9 @@ export const createServer = () => {
   app.use('/phones', express.json(), phonesRouter);
   app.use('/products', express.json(), productsRouter);
   app.use('/tablets', express.json(), tabletsRouter);
+  app.use('*', express.json(), (_req, res) => {
+    res.sendStatus(404);
+  });
   // app.use('/accessories', express.json(), productsRouter);
   return app;
 };

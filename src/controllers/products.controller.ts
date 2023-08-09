@@ -1,7 +1,7 @@
 import { Controller } from '../types';
 import { productsService } from '../services/Products.service';
 
-// const sortByValues = ['itemId', 'price', 'name', 'year'];
+const sortByValues = ['itemId', 'price', 'name', 'year'];
 const categories = ['phones', 'tablets', 'accessories'];
 
 export const getAllProductsController: Controller = async (req, res) => {
@@ -12,16 +12,16 @@ export const getAllProductsController: Controller = async (req, res) => {
     sortBy = 'itemId',
   } = req.query;
 
-  // const isSortByValid =
-  //   typeof sortBy === 'string' && !sortByValues.includes(sortBy as string);
-  // const isLimitValid = !Number.isNaN(limit);
-  // const isOffsetValid = !Number.isNaN(offset);
+  const isSortByValid = sortByValues.includes(sortBy as string);
+  const isLimitValid = !isNaN(+limit) && +limit >= 0;
+  const isOffsetValid = !isNaN(+offset) && +offset >= 0;
 
-  // if (!isSortByValid || !isLimitValid || !isOffsetValid) {
-  //   res.sendStatus(400);
-  // }
+  if (!isSortByValid || !isLimitValid || !isOffsetValid) {
+    res.sendStatus(400);
+    return;
+  }
 
-  const products = await productsService.findAllWithPagination(
+  const products = await productsService.findAll(
     {
       limit: Number(limit),
       offset: Number(offset),

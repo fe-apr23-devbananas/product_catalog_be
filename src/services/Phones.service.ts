@@ -11,7 +11,7 @@ class PhonesService {
   findAll(options: FindAllOptions) {
     const { limit, offset, sortBy } = options;
 
-    return Products.findAll({
+    return Products.findAndCountAll({
       limit,
       offset,
       order: [[sortBy, 'ASC']],

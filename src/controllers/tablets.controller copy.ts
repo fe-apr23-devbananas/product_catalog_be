@@ -2,19 +2,19 @@ import { Controller } from '../types';
 import { tabletsService } from '../services/Tablets.service';
 import { productsService } from '../services/Products.service';
 
-// const sortByValues = ['itemId', 'price', 'name', 'year'];
+const sortByValues = ['itemId', 'price', 'name', 'year'];
 
 export const getAllTabletsController: Controller = async (req, res) => {
   const { limit = 8, offset = 0, sortBy = 'itemId' } = req.query;
 
-  // const isSortByValid =
-  //   typeof sortBy === 'string' && !sortByValues.includes(sortBy as string);
-  // const isLimitValid = !Number.isNaN(limit);
-  // const isOffsetValid = !Number.isNaN(offset);
+  const isSortByValid = sortByValues.includes(sortBy as string);
+  const isLimitValid = !isNaN(+limit) && +limit >= 0;
+  const isOffsetValid = !isNaN(+offset) && +offset >= 0;
 
-  // if (!isSortByValid || !isLimitValid || !isOffsetValid) {
-  //   res.sendStatus(400);
-  // }
+  if (!isSortByValid || !isLimitValid || !isOffsetValid) {
+    res.sendStatus(400);
+    return;
+  }
 
   const tablets = await tabletsService.findAll({
     limit: Number(limit),

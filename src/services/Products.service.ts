@@ -12,18 +12,10 @@ class ProductsService {
     return Products.findByPk(itemId);
   }
 
-  findAll(category = 'phones') {
-    return Products.findAll({
-      where: {
-        category: category,
-      },
-    });
-  }
-
-  findAllWithPagination(options: FindAllOptions, category = 'phones') {
+  findAll(options: FindAllOptions, category = 'phones') {
     const { limit, offset, sortBy = 'itemId' } = options;
 
-    return Products.findAll({
+    return Products.findAndCountAll({
       limit,
       offset,
       order: [[sortBy, 'ASC']],
