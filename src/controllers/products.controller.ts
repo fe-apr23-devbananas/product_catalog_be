@@ -11,7 +11,6 @@ export const getAllProductsController: Controller = async (req, res) => {
     offset = 0,
     sortBy = 'itemId',
   } = req.query;
-
   const isSortByValid = sortByValues.includes(sortBy as string);
   const isLimitValid = !isNaN(+limit) && +limit >= 0;
   const isOffsetValid = !isNaN(+offset) && +offset >= 0;

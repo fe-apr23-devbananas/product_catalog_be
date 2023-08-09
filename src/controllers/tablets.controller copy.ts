@@ -3,7 +3,6 @@ import { tabletsService } from '../services/Tablets.service';
 import { productsService } from '../services/Products.service';
 
 const sortByValues = ['itemId', 'price', 'name', 'year'];
-
 export const getAllTabletsController: Controller = async (req, res) => {
   const { limit = 8, offset = 0, sortBy = 'itemId' } = req.query;
 
