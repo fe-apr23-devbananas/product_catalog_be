@@ -58,6 +58,7 @@ class ProductsService {
 
   findBySearch(search: string) {
     return Products.findAll({
+      limit: 10,
       where: {
         name: { [Op.iLike]: `%${search}` },
       },
