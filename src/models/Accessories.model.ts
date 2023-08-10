@@ -11,7 +11,7 @@ import { Description } from '../types';
 @Table({
   tableName: 'accessories',
 })
-export class Phones extends Model {
+export class Accessories extends Model {
   @AllowNull(false)
   @PrimaryKey
   @Column({

@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { literal } from 'sequelize';
 import { Products } from '../models/Products.model';
 
@@ -44,6 +45,22 @@ class ProductsService {
     return Products.findAll({
       limit: 10,
       order: [[literal('ABS("fullPrice" - "price")'), 'DESC']],
+    });
+  }
+
+  findEvery(id: string[]) {
+    return Products.findAll({
+      where: {
+        itemId: id,
+      },
+    });
+  }
+
+  findBySearch(search: string) {
+    return Products.findAll({
+      where: {
+        name: { [Op.like]: `${search}` },
+      },
     });
   }
 }

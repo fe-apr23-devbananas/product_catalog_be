@@ -3,7 +3,7 @@ import {
   getAllTabletsController,
   getRecommendedController,
   getTabletByIdController,
-} from '../controllers/tablets.controller copy';
+} from '../controllers/tablets.controller';
 
 const tabletsRouter = express.Router();
 
