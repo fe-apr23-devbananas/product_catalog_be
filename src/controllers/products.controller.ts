@@ -56,7 +56,9 @@ export const getAllProductsController: Controller = async (req, res) => {
   }
 
   if (typeof search === 'string') {
-    const products = await productsService.findBySearch(search);
+    const searchParams = search.split(' ').join('%');
+
+    const products = await productsService.findBySearch(`%${searchParams}%`);
 
     if (!products) {
       res.sendStatus(400);

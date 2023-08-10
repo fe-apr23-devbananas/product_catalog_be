@@ -59,7 +59,7 @@ class ProductsService {
   findBySearch(search: string) {
     return Products.findAll({
       where: {
-        name: { [Op.like]: `${search}` },
+        name: { [Op.iLike]: `%${search}` },
       },
     });
   }
